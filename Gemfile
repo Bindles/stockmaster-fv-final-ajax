@@ -72,5 +72,6 @@ group :test do
 end
 
 gem 'devise'
-
-gem 'twitter_bootstrap_rails'
+gem 'twitter-bootstrap-rails', '~> 5.0'
+gem 'jquery-rails'
+gem 'devise-bootstrap-views'
