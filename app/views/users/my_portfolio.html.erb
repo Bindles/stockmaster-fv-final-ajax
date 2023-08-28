@@ -7,15 +7,13 @@
     <%= form_tag "search_stocks", method: :get, id: "stock-lookup-form" do %>
         <div class="form-group row no-padding text-center col-md-12">
             <div class="col-md-12">
-                <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: "form-control search-box input-lg" %>
+                <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: "form-control search-box input-lg", required: true %>
 
             </div>
             <div class="col-md-2">
-                <button type="button" class="btn btn-info">Search</button>
-                <button type="reset" class="btn btn-default">Reset</button>
+ 
                 <%= button_to 'Lookup a Stock', path: "#", class: "btn btn-danger" %>
-                <%= button_to "Destroy this post", class: '' %>
-                <%= button_to "Add Pictures", class: "btn btn-small btn-success" %>
+
                 <%= button_tag( type: :submit, path: "#", class: "btn btn-lg btn btn-info") do %>
                 <i class="fa fa-search"></i>Look up a stock
                 <% end %>
@@ -31,5 +29,5 @@
     <strong>Last Price:</strong> <%= @stock.last_price %>
   </div>
 <% elsif params[:stock].present? %>
-  <p>No stock data found for the provided symbol.</p>
+    <% flash.now[:danger] = "No stock data found for the provided symbol." %>
 <% end %>
