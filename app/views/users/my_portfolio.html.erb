@@ -4,7 +4,7 @@
 
 <h3>Search for Stocks</h3>
 <div class="id">stock-lookup
-    <%= form_tag "search_stocks", method: :get, id: "stock-lookup-form" do %>
+    <%= form_tag "search_stocks", remote: true, method: :get, id: "stock-lookup-form" do %>
         <div class="form-group row no-padding text-center col-md-12">
             <div class="col-md-12">
                 <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: "form-control search-box input-lg", required: true %>
@@ -22,12 +22,7 @@
     <% end %>
 </div>
 
-<% if @stock %>
-  <div class="well results-block">
-    <strong>Stock Name:</strong> <%= @stock.name %>
-    <strong>Ticker Symbol:</strong> <%= @stock.ticker %>
-    <strong>Last Price:</strong> <%= @stock.last_price %>
-  </div>
-<% elsif params[:stock].present? %>
-    <% flash.now[:danger] = "No stock data found for the provided symbol." %>
-<% end %>
+
+<div class="result">
+    <%= render 'users/result' %>
+</div>
